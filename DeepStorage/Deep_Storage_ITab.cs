@@ -98,31 +98,15 @@ namespace LWM.DeepStorage
                 curY += 22;
             }
 
-            string stringUpper = searchString.ToUpperInvariant();
-            List<Thing> itemToDraw = storedItems
-                .Where(t =>
-                    t.LabelNoCount
-                        .ToUpperInvariant()
-                        .Contains(stringUpper)).ToList();
-
-            GetIndexRangeFromScrollPosition(outRect.height, this.scrollPosition.y, out int from, out int to, GenUI.ListSpacing);
-            to = to > itemToDraw.Count ? itemToDraw.Count : to;
-
-            curY = from * GenUI.ListSpacing;
-            for (int i = from; i < to; i++) {
-                this.DrawThingRow(ref curY, viewRect.width, itemToDraw[i]);
+            for (int i = 0; i < storedItems.Count; i++) {
+                this.DrawThingRow(ref curY, viewRect.width, storedItems[i]);
             }
 
             if (Event.current.type == EventType.Layout) {
-                this.scrollViewHeight = storedItems.Count * GenUI.ListSpacing + 25f; //25f buffer   -- ??
+                this.scrollViewHeight = curY + 25f; //25f buffer   -- ??
             }
 
             Widgets.EndScrollView();
-
-            searchString = Widgets.TextField(
-                new Rect(0, outRect.yMax, outRect.width - GenUI.ScrollBarWidth, GenUI.ListSpacing)
-                , searchString);
-
             GUI.EndGroup();
             //TODO: this should get stored at top and set here.
             GUI.color = Color.white;
