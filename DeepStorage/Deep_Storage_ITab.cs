@@ -34,6 +34,8 @@ namespace LWM.DeepStorage
         private const float ThingLeftX = 36f;
         private const float StandardLineHeight = 22f;
 
+        private string searchString = string.Empty;
+
         public ITab_DeepStorage_Inventory() {
             this.size = new Vector2(460f, 450f);
             this.labelKey = "Contents"; // could define <LWM.Contents>Contents</LWM.Contents> in Keyed language, but why not use what's there.
@@ -82,7 +84,7 @@ namespace LWM.DeepStorage
                 }).
                 ThenByDescending((Thing x) => (x.HitPoints / x.MaxHitPoints)).ToList();
             // outRect is the is the rectangle that is visible on the screen:
-            Rect outRect = new Rect(0f, 10f + curY, frame.width, frame.height-curY);
+            Rect outRect = new Rect(0f, 10f + curY, frame.width, frame.height-curY - GenUI.ListSpacing - TopPadding);
             // viewRect is inside the ScrollView, so it starts at y=0f
             Rect viewRect = new Rect(0f, 0f, frame.width - 16f, this.scrollViewHeight);//TODO: scrollbars are slightly too far to the right
             // 16f ensures plenty of room for scrollbars.
@@ -96,15 +98,31 @@ namespace LWM.DeepStorage
                 curY += 22;
             }
 
-            for (int i = 0; i < storedItems.Count; i++) {
-                this.DrawThingRow(ref curY, viewRect.width, storedItems[i]);
+            string stringUpper = searchString.ToUpperInvariant();
+            List<Thing> itemToDraw = storedItems
+                .Where(t =>
+                    t.LabelNoCount
+                        .ToUpperInvariant()
+                        .Contains(stringUpper)).ToList();
+
+            GetIndexRangeFromScrollPosition(outRect.height, this.scrollPosition.y, out int from, out int to, GenUI.ListSpacing);
+            to = to > itemToDraw.Count ? itemToDraw.Count : to;
+
+            curY = from * GenUI.ListSpacing;
+            for (int i = from; i < to; i++) {
+                this.DrawThingRow(ref curY, viewRect.width, itemToDraw[i]);
             }
 
             if (Event.current.type == EventType.Layout) {
-                this.scrollViewHeight = curY + 25f; //25f buffer   -- ??
+                this.scrollViewHeight = storedItems.Count * GenUI.ListSpacing + 25f; //25f buffer   -- ??
             }
 
             Widgets.EndScrollView();
+
+            searchString = Widgets.TextField(
+                new Rect(0, outRect.yMax, outRect.width - GenUI.ScrollBarWidth, GenUI.ListSpacing)
+                , searchString);
+
             GUI.EndGroup();
             //TODO: this should get stored at top and set here.
             GUI.color = Color.white;
