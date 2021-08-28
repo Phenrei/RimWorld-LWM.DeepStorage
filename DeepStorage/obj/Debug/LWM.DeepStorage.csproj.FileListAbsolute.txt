@@ -1,7 +1,0 @@
-C:\Games\Steam\steamapps\common\RimWorld\Development\RimWorld-LWM.DeepStorage\DeepStorage\obj\Debug\LWM.DeepStorage.csproj.AssemblyReference.cache
-C:\Games\Steam\steamapps\common\RimWorld\Development\RimWorld-LWM.DeepStorage\DeepStorage\obj\Debug\LWM.DeepStorage.csproj.CoreCompileInputs.cache
-C:\Games\Steam\steamapps\common\RimWorld\Development\RimWorld-LWM.DeepStorage\_Mod\LWM.DeepStorage\1.3\Assemblies\LWM.DeepStorage.dll
-C:\Games\Steam\steamapps\common\RimWorld\Development\RimWorld-LWM.DeepStorage\_Mod\LWM.DeepStorage\1.3\Assemblies\LWM.DeepStorage.pdb
-C:\Games\Steam\steamapps\common\RimWorld\Development\RimWorld-LWM.DeepStorage\DeepStorage\obj\Debug\LWM.DeepStorage.csproj.CopyComplete
-C:\Games\Steam\steamapps\common\RimWorld\Development\RimWorld-LWM.DeepStorage\DeepStorage\obj\Debug\LWM.DeepStorage.dll
-C:\Games\Steam\steamapps\common\RimWorld\Development\RimWorld-LWM.DeepStorage\DeepStorage\obj\Debug\LWM.DeepStorage.pdb

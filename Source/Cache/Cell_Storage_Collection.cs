@@ -95,7 +95,7 @@ namespace LWM.DeepStorage
         public bool Remove(Thing item)
         {
             if (_thingsInStore.Remove(item)
-                & (_cacheCell.TryGetValue(item.Position, out CellStorage model)
+                && (_cacheCell.TryGetValue(item.Position, out CellStorage model)
                    && model.Remove(item)))
             {
                 return true;

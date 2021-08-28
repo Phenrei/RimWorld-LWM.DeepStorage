@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>LWM's Deep Storage</name>
+	<author>Little White Mouse, Owlchemist</author>
+	<packageId>LWM.DeepStorage</packageId>
+	<supportedVersions>
+		<li>1.3</li>
+	</supportedVersions>
+	<modDependencies>
+		<li>
+			<packageId>UnlimitedHugs.HugsLib</packageId>
+			<displayName>HugsLib</displayName>
+			<downloadUrl>https://github.com/UnlimitedHugs/RimworldHugsLib/releases/latest</downloadUrl>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/818773962</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>UnlimitedHugs.HugsLib</li>
+		<li>rimfridge.kv.rw</li>
+		<li>Mlie.CannibalMeals</li>
+	</loadAfter>
+	<description>This is an experimental fork.  It merges the latest version of Deep Storage together with the experimental performance cache features made by NoTooShabby. Due to the sheer size of this mod's codebase, I don't plan on listing this mod to the masses, as it's too much to maintain.</description>
+	<url>https://github.com/Owlchemist/RimWorld-LWM.DeepStorage</url>
+</ModMetaData>
