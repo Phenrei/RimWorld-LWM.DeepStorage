@@ -291,10 +291,18 @@ namespace LWM.DeepStorage
                 y = l.CurHeight;
                 l.End();
                 if (useCustomThingFilter) {
-                    if (customThingFilter==null) {
-                        customThingFilter=new ThingFilter();
-                        customThingFilter.CopyAllowancesFrom(def.building.fixedStorageSettings.filter);
-                        Utils.Mess(Utils.DBF.Settings,"Created new filter for "+def.defName+": "+customThingFilter);
+                    if (customThingFilter == null) {
+                        customThingFilter = new ThingFilter();
+                        if (def.building.fixedStorageSettings != null)
+                        {
+                            customThingFilter.CopyAllowancesFrom(def.building.fixedStorageSettings.filter);
+                            Utils.Mess(Utils.DBF.Settings, "Created new filter for " + def.defName + ": " + customThingFilter);
+                        }
+                        else
+                        {
+                            customThingFilter.SetFromPreset(StorageSettingsPreset.DefaultStockpile);
+                            Utils.Mess(Utils.DBF.Settings, "No filter to copy for  " + def.defName + ", allowing all from default stockpile.");
+                        }
 //                        Log.Error("Old filter has: "+def.building.fixedStorageSettings.filter.AllowedDefCount);
 //                        Log.Warning("New filter has: "+customThingFilter.AllowedDefCount);
                     }
